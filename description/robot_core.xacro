@@ -144,7 +144,7 @@
     </gazebo> 
     <!-- CASTER WHEEL LINK -->
 
-    <joint name="caster_wheel_joint" type="continuous">
+    <joint name="caster_wheel_joint" type="fixed">
         <parent link="chassis"/>
         <child link="caster_wheel"/>
         <origin xyz="0.24 0 0"/> 
@@ -192,5 +192,41 @@
             </surface>
         </collision>
     </gazebo>
+
+
+    <link name="bump_link">
+        <visual>
+            <origin xyz="0.55 0 0.075"/>
+            <geometry>
+                <box size="0.1 0.1 0.015"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0.55 0 0.075"/>
+            <geometry>
+                <box size="0.1 0.1 0.015"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.15">
+            <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <joint name="bump_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bump_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
     
+    <gazebo reference="bump_link">
+        <sensor name='my_contact' type='contact'>
+            <plugin name="my_plugin" filename="libgazebo_ros_bumper.so"/>
+               <contact>
+                 <collision>base_link_fixed_joint_lump__bump_link_collision_1</collision>
+               </contact>
+             <update_rate> 5 </update_rate>
+             </sensor>
+       </gazebo>
+
 </robot>
