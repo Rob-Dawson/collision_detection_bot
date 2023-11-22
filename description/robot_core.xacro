@@ -196,20 +196,20 @@
 
     <link name="bump_link">
         <visual>
-            <origin xyz="0.55 0 0.075"/>
+            <origin xyz="0.35 0 0.075"/>
             <geometry>
-                <box size="0.1 0.1 0.015"/>
+                <box size="0.1 0.1 0.075"/>
             </geometry>
             <material name="white"/>
         </visual>
         <collision>
-            <origin xyz="0.55 0 0.075"/>
+            <origin xyz="0.35 0 0.075"/>
             <geometry>
-                <box size="0.1 0.1 0.015"/>
+                <box size="0.1 0.1 0.075"/>
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.15">
-            <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
+        <xacro:inertial_box mass="0.02" x="0.1" y="0.1" z="0.075">
+            <origin xyz="0.35 0 0.075" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
 
